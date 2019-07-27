@@ -3,7 +3,6 @@
                 width: 100% !important;
                 padding: 0;
             }
-
             
         </style>
 
@@ -169,12 +168,20 @@
                                             <td>
                                             <input type="file" id="exampleInputFile">
                                         </td></tr>
+                                        <tr>
+                                            <td>
+                                                <button type="submit" class="btn btn-primary">Save</button> 
+                                                <a href="<?= site_url('quotation') ?>" class="btn btn-default">Cancel</a>
+                                            
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
               </form>
               </div><!-- /.box -->
             </div><!-- /.col -->

@@ -99,7 +99,8 @@ $('#datepicker1').datepicker({
                     $(product).closest('tr').find('.invoice_product').val(itemText);
                     $(product).closest('tr').find('.invoice_product_price').val(itemValue);
 
-                    updateTotals('.calculate');
+                    $val = $(product).closest('tr').find('.calculate');
+                    updateTotals($val);
                     calculateTotal();
 
                 });

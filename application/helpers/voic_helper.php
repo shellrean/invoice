@@ -93,7 +93,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     {
        foreach ($query->result() as $row)
         {
-            $kdmax = $row->kditem;
+            $kdmax = $row->$id;
             $kode = (int) substr($kdmax, 4,4);
             $kode++;
             $nourut = sprintf("%'.04d\n", $kode);
@@ -133,4 +133,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
     }
     $cmb .="</select>";
     return $cmb;  
+  }
+
+  /**
+   * Helper untuk mengambil data dari selector
+   * @return object
+   * @author Kuswandi <wandinak17@gmail.com>
+   */
+  function getData($tabel,$selector,$field,$select = '*') {
+    $CI =& get_instance();
+
+    $CI->db->select($select);
+
+    $result = $CI->db->get_where($tabel,[$selector => $field])->row();
+    return $result;
   }

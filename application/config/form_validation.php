@@ -31,7 +31,7 @@ $config['customer/create'] = [
 
 $config['quotation/create'] = [
   [
-    'field'   => 'subtotal',
+    'field'   => 'invoice_subtotal',
     'label'   => 'subtotal',
     'rules'   => 'required'
   ],
