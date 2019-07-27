@@ -4,11 +4,9 @@
               <?= $this->session->flashdata('message'); ?>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>DAFTAR ITEM </h3>
+                  <h3 class='box-title'>DAFTAR CUSTOMER </h3>
 				  <div class="box-tools pull-right">
-				  	  <?php echo anchor('item/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah item"'); ?>
-			          <?php echo anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
-			          <?php echo anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
+				  	  <?php echo anchor('customer/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah item"'); ?>
 		      	  </div>
 
                 </div><!-- /.box-header -->
@@ -18,37 +16,35 @@
 			                <tr>
 			                    <th width="30px">No</th>
 							    <th>Nama</th>
-							    <th>Unit</th>
-							    <th>Harga Beli</th>
-							    <th>Harga Jual</th>
-							    <th>Pajak</th>
-							    <th>Remark</th>
+							    <th>Perusahaan</th>
+							    <th>Nama Kontak</th>
+							    <th>Email</th>
+							    <th>Telp</th>
 							    <th>Aksi</th>
 					        </tr>
 					    </thead>
 						<tbody>
-							<?php $start = 0; foreach ($items as $i): ?>
-					        <tr>
-							    <td><?= ++$start ?></td>
-							    <td><?= $i->nama ?></td>
-							    <td><?= $i->unit ?></td>
-							    <td><?= rupiah($i->harga_beli) ?></td>
-							    <td><?= rupiah($i->harga_jual) ?></td>
-							    <td><?= $i->tax ?></td>
-							    <td><?= $i->remark ?></td>
-							    <td width="140px">
+							<?php $start = 0; foreach($customers as $c): ?>
+							<tr>
+								<td><?= ++$start ?></td>
+								<td><?= $c->display_name ?></td>
+								<td><?= $c->company_name ?></td>
+								<td><?= $c->salutation. ' '.$c->first_name.' '.$c->last_name ?></td>
+								<td><?= $c->email ?></td>
+								<td><?= $c->phone ?></td>
+								<td width="140px">
 							    	<div class="btn-group">
 									  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    Aksi <span class="caret"></span>
 									  </button>
 									  <ul class="dropdown-menu">
-									    <li><a href="<?= base_url('item/detail/'.$i->kditem) ?>" class="toggle-modal">Detail</a></li>
-									    <li><a href="<?= base_url('item/edit/'.$i->kditem) ?>">Edit</a></li>
+									    <li><a href="<?= base_url('customer/detail/'.$c->id) ?>" >Detail</a></li>
+									    <li><a href="<?= base_url('customer/edit/'.$c->id) ?>">Edit</a></li>
 									  </ul>
 									</div>
 							    </td>
-						    </tr>
-					        <?php endforeach; ?>
+							</tr>
+							<?php endforeach; ?>
 			            </tbody>
 			        </table>
 			        <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>

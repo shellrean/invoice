@@ -80,14 +80,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
    * @return string
    * @author Kuswandi <wandinak17@gmail.com>
    */
-  function generateKodeItem()
+  function generateKodeItem($id,$tabel)
   {
     $year = date('y');
     $month = date('m');
 
     $CI =& get_instance();
-    $CI->db->select_max('kditem');
-    $query = $CI->db->get('items');
+    $CI->db->select_max($id);
+    $query = $CI->db->get($tabel);
 
     if ($query->num_rows() > 0)
     {
@@ -115,4 +115,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
     $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
     return $hasil_rupiah;
  
+  }
+
+  /**
+   * Helper untuk membuat select 
+   * @return string
+   * @author Kuswandi <wandinak17@gmail.com>
+   */
+  function cmb_dinamis($name,$table,$field,$pk,$selected){
+    $ci = get_instance();
+    $cmb = "<select name='$name' class='js-example-basic-single js-states form-control select2'>";
+    $data = $ci->db->get($table)->result();
+    foreach ($data as $d){
+        $cmb .="<option value='".$d->$pk."'";
+        $cmb .= $selected==$d->$pk?" selected='selected'":'';
+        $cmb .=">".  strtoupper($d->$field)."</option>";
+    }
+    $cmb .="</select>";
+    return $cmb;  
   }

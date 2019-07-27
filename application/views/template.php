@@ -72,16 +72,16 @@
         <![endif]-->
     </head>
     <?php $user = $this->db->get_where('user',['username' => $this->session->userdata('username')])->row(); ?>
-    <body class="hold-transition skin-blue-light sidebar-mini">
+    <body class="hold-transition skin-blue-light">
         <div class="wrapper">
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="#" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>B</b>CS</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><img src="<?= base_url('assets/dist/img/img-logo.png') ?>" width="70px" style="filter: brightness(1.3)"></span>
+                    <span class="logo-lg">CV Bisma </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -212,6 +212,7 @@
         <!-- Bootstrap 3.3.5 -->
         <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
         <!-- DataTables -->
+        <script src="<?= base_url() ?>assets/plugins/input-mask/jquery.mask.min.js"></script>
         <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="<?= base_url() ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- Sparkline -->
@@ -238,8 +239,8 @@
         <!-- AdminLTE App -->
         <script src="<?= base_url() ?>assets/dist/js/app.min.js"></script>
         <!-- AdminLTE for demo purposes -->
-        <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-        <script src="<?= base_url() ?>assets/dist/js/pages/dashboard2.js" type="text/javascript"></script>
+      <!--   <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
+        <script src="<?= base_url() ?>assets/dist/js/pages/dashboard2.js" type="text/javascript"></script> -->
 
         <script src="<?= base_Url() ?>assets/dist/js/scripts.js"></script>
        

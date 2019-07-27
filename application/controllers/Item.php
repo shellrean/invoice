@@ -32,12 +32,15 @@ class Item extends CI_Controller {
 			$this->template->load('template','item/create');
 
 		} else {
+			$h_j =  str_replace('.', '', $this->input->post('harga_jual'));
+			$h_b =  str_replace('.', '', $this->input->post('harga_beli'));
+
 			$data = [
 				'kditem'		=> generateKodeItem(),
 				'nama'			=> $this->input->post('nama'),
 				'unit'			=> $this->input->post('unit'),
-				'harga_beli'	=> $this->input->post('harga_beli'),
-				'harga_jual'	=> $this->input->post('harga_jual'),
+				'harga_beli'	=> (int)$h_b,
+				'harga_jual'	=> (int)$h_j,
 				'tax'			=> $this->input->post('tax'),
 				'remark'		=> $this->input->post('remark'),
 			];
@@ -47,7 +50,36 @@ class Item extends CI_Controller {
 			alertsuccess('message','Data item berhasil ditambah');
 			redirect('item');
 		}
-	} 
+	}
+
+	public function edit($kditem)
+	{
+		if($this->form_validation->run('item/create') == FALSE) {
+
+			$data['item'] = $this->db->get_where('items',['kditem' => $kditem])->row();
+			$this->template->load('template','item/edit',$data);
+
+		} else {
+			$h_j =  str_replace('.', '', $this->input->post('harga_jual'));
+			$h_b =  str_replace('.', '', $this->input->post('harga_beli'));
+
+			$data = [
+				'nama'			=> $this->input->post('nama'),
+				'unit'			=> $this->input->post('unit'),
+				'harga_beli'	=> (int)$h_b,
+				'harga_jual'	=> (int)$h_j,
+				'tax'			=> $this->input->post('tax'),
+				'remark'		=> $this->input->post('remark'),
+			];
+
+			$this->db->update('items',$data,['kditem' => $kditem]);
+
+			alertsuccess('message','Data item berhasil diubah');
+			redirect('item');
+		}
+	}
+	
+
 	public function detail($kditem) 
 	{
     	$data['item'] = $this->db->get_where('items',['kditem' => $kditem])->row();

@@ -20,3 +20,20 @@ $config['item/create'] = [
     'rules'   => 'required'
   ],
 ];
+
+$config['customer/create'] = [
+  [
+    'field'   => 'salutation',
+    'label'   => 'salutation',
+    'rules'   => 'required'
+  ],
+];
+
+$config['quotation/create'] = [
+  [
+    'field'   => 'subtotal',
+    'label'   => 'subtotal',
+    'rules'   => 'required'
+  ],
+];
+
