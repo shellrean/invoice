@@ -14,6 +14,7 @@ class Customer extends CI_Controller {
 
 	public function index()
 	{
+		$this->db->order_by('id','DESC');
 		$data['customers'] = $this->db->get('customer')->result();
 		$this->template->load('template','customer/index',$data);
 	}

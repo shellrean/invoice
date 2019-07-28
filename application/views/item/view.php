@@ -1,19 +1,15 @@
 <table class='table table-bordered'>
   <tr>
+    <td>Kode Item</td>
+    <th><?= $item->kditem ?></th>
+  </tr>
+  <tr>
     <td>Nama</td>
     <td><?= $item->nama ?></td>
   </tr>
   <tr>
-    <td>Unit</td>
-    <td><?= $item->unit ?></td>
-  </tr>
-  <tr>
-    <td>Pajak</td>
-    <td><?= $item->tax ?></td>
-  </tr>
-  <tr>
     <td>Remark</td>
-    <td><?= $item->remark ?></td>
+    <td><?= $item->deskripsi ?></td>
   </tr>
   <tr>
     <td>Harga Beli</td>

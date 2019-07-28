@@ -28,16 +28,13 @@
                                         <tr><td>Expired Date</td>
                                             <td><input type="text" class="form-control" name="expdate" id="datepicker1" data-format="dd-mm-yyyy" placeholder="Expdate" value="" />
                                         </td></tr>
-                                        <tr><td>Reference</td>
-                                            <td><input type="text" class="form-control" name="reference" id="reference" placeholder="Reference" value="" />
-                                        </td></tr>
                                     </table>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 nopadding">
                                     <table class="table table-bordered" id="invoice_table">
                                         <thead>
                                             <tr>
-                                                <th><a href="#" class="btn btn-success btn-xs add-row"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
+                                                <th><h4><a href="#" class="btn btn-success btn-xs add-row"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h4></th>
                                                 <th width="400">
                                                     <h4>Item</h4>
                                                 </th>
@@ -64,7 +61,7 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="form-group form-group-sm  no-margin-bottom">
-                                                        <input type="text" class="form-control form-group-sm item-input invoice_product" name="invoice_product[]" placeholder="Enter item title and / or description">
+                                                        <input type="text" class="form-control form-group-sm item-input invoice_product" name="invoice_product[]" placeholder="Enter item title-description">
                                                         <p class="item-select">or <a href="#">select an item</a></p>
                                                     </div>
                                                 </td>
@@ -160,14 +157,6 @@
                                             <td>
                                             <textarea class="form-control" rows="3" name="custnotes" id="custnotes" placeholder="Customer Notes" value=""></textarea>
                                         </td></tr>
-                                        <tr><td>Remark <?php echo form_error('remark') ?></td>
-                                            <td>
-                                            <textarea class="form-control" rows="3" name="remark" id="remark" placeholder="Remark"></textarea>
-                                        </td></tr>
-                                        <tr><td><label for="exampleInputFile">Attach File</label></td>
-                                            <td>
-                                            <input type="file" id="exampleInputFile">
-                                        </td></tr>
                                         <tr>
                                             <td>
                                                 <button type="submit" class="btn btn-primary">Save</button> 
@@ -183,11 +172,11 @@
                 </div>
                 
               </form>
-              </div><!-- /.box -->
-            </div><!-- /.col -->
+              </div>
             </div>
-          </div><!-- /.row -->
-        </section><!-- /.content -->
+            </div>
+          </div>
+        </section>
 
 
 
@@ -205,7 +194,7 @@
                         if($results) {
                             echo '<select class="form-control item-select select2">';
                             foreach($results as $r):
-                                print '<option value="'.$r->harga_jual.'">'.$r->nama.' - '.$r->remark.'</option>';
+                                print '<option value="'.$r->harga_jual.'">'.$r->nama.' - '.$r->deskripsi.'</option>';
                             endforeach;
                             echo '</select>';
 
@@ -220,6 +209,6 @@
                 <button type="button" data-dismiss="modal" class="btn btn-primary" id="selected">Add</button>
                 <button type="button" data-dismiss="modal" class="btn">Cancel</button>
               </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal
+            </div>
+          </div>
+        </div>

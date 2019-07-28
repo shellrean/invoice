@@ -80,29 +80,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
    * @return string
    * @author Kuswandi <wandinak17@gmail.com>
    */
-  function generateKodeItem($id,$tabel)
+  function generateKodeItem($id,$tabel,$prefix = null)
   {
-    $year = date('y');
-    $month = date('m');
-
-    $CI =& get_instance();
-    $CI->db->select_max($id);
-    $query = $CI->db->get($tabel);
-
-    if ($query->num_rows() > 0)
-    {
-       foreach ($query->result() as $row)
-        {
-            $kdmax = $row->$id;
-            $kode = (int) substr($kdmax, 4,4);
-            $kode++;
-            $nourut = sprintf("%'.04d\n", $kode);
-        }
+    $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $res = "";
+    for ($i = 0; $i < 10; $i++) {
+        $res .= $chars[mt_rand(0, strlen($chars)-1)];
     }
-    
-    $genkditem = $year.''.$month.''.$nourut;
+    $qid = strtoupper(uniqid());
+    $kode = trim(preg_replace('/\s+/', ' ', $prefix.$res.$qid));
 
-    return $genkditem;
+    return $kode;
   }
 
   /**
@@ -147,4 +135,45 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     $result = $CI->db->get_where($tabel,[$selector => $field])->row();
     return $result;
+  }
+
+  /**
+   * Helper untuk mengambil data dari selector
+   * @return object
+   * @author Kuswandi <wandinak17@gmail.com>
+   */
+  function getStatus($id){
+    $CI =& get_instance();
+
+    $data = $CI->db->get_where('master_status',['id' => $id])->row();
+
+    return $data->status_name;
+  }
+
+  /**
+   * Helper untuk mengambil data dari selector
+   * @return object
+   * @author Kuswandi <wandinak17@gmail.com>
+   */
+  function toDateInd($date){
+    $dat = explode('-',$date);
+
+    $y = $dat[0];
+    $m = $dat[1];
+    $d = $dat[2];
+
+    $res = $d.'/'.$m.'/'.$y;
+
+    return $res;
+  }
+
+  function orderNumberGenerate(){
+    $CI =&get_instance();
+
+    $CI->db->order_by('id','DESC');
+    $id_num = $CI->db->get('order_tabel')->row()->id+1;
+    $order_num = sprintf("BCS-%010d", $id_num);
+
+    $CI->db->insert('order_tabel',array('dd' => 'oke'));
+    return $order_num;
   }

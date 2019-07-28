@@ -17,12 +17,11 @@
 			            <thead>
 			                <tr>
 			                    <th width="30px">No</th>
+			                    <th>Kode Item</th>
 							    <th>Nama</th>
-							    <th>Unit</th>
 							    <th>Harga Beli</th>
 							    <th>Harga Jual</th>
-							    <th>Pajak</th>
-							    <th>Remark</th>
+							    <th>Deskripsi</th>
 							    <th>Aksi</th>
 					        </tr>
 					    </thead>
@@ -30,12 +29,11 @@
 							<?php $start = 0; foreach ($items as $i): ?>
 					        <tr>
 							    <td><?= ++$start ?></td>
+							    <td><?= $i->kditem ?></td>
 							    <td><?= $i->nama ?></td>
-							    <td><?= $i->unit ?></td>
 							    <td><?= rupiah($i->harga_beli) ?></td>
 							    <td><?= rupiah($i->harga_jual) ?></td>
-							    <td><?= $i->tax ?></td>
-							    <td><?= $i->remark ?></td>
+							    <td><?= $i->deskripsi ?></td>
 							    <td width="140px">
 							    	<div class="btn-group">
 									  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

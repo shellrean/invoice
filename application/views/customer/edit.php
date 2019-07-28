@@ -58,7 +58,7 @@
                                         <tr>
                                             <td width="25%">Telp</td>
                                             <td>
-                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="<?= $customer->phone ?>" />
+                                                <input type="text" class="form-control phone" name="phone" id="phone" placeholder="Phone" value="<?= $customer->phone ?>" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,13 +137,13 @@
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="bill_addr_phone" placeholder="Billing Address Phone" value="<?= $customer->bill_addr_phone ?>" />
+                                                    <input type="text" class="form-control phone" name="bill_addr_phone" placeholder="Billing Address Phone" value="<?= $customer->bill_addr_phone ?>" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Fax</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="bill_addr_fax" placeholder="Billing Address Fax" value="<?= $customer->bill_addr_fax ?>" />
+                                                    <input type="text" class="form-control phone" name="bill_addr_fax" placeholder="Billing Address Fax" value="<?= $customer->bill_addr_fax ?>" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -187,13 +187,13 @@
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ship_addr_phone" placeholder="Shipping Address Phone" value="<?= $customer->ship_addr_phone ?>" />
+                                                    <input type="text" class="form-control phone" name="ship_addr_phone" placeholder="Shipping Address Phone" value="<?= $customer->ship_addr_phone ?>" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Fax</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ship_addr_fax" id="ship_addr_fax" placeholder="Shipping Address Fax" value="<?= $customer->ship_addr_fax ?>" />
+                                                    <input type="text" class="form-control phone" name="ship_addr_fax" id="ship_addr_fax" placeholder="Shipping Address Fax" value="<?= $customer->ship_addr_fax ?>" />
                                                 </td>
                                             </tr>
                                         </table>

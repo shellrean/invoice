@@ -34,15 +34,14 @@ class Item extends CI_Controller {
 		} else {
 			$h_j =  str_replace('.', '', $this->input->post('harga_jual'));
 			$h_b =  str_replace('.', '', $this->input->post('harga_beli'));
-
+			
+			$kode = generateKodeItem('kditem','items','ITM');
 			$data = [
-				'kditem'		=> generateKodeItem(),
+				'kditem'			=> $kode,
 				'nama'			=> $this->input->post('nama'),
-				'unit'			=> $this->input->post('unit'),
 				'harga_beli'	=> (int)$h_b,
 				'harga_jual'	=> (int)$h_j,
-				'tax'			=> $this->input->post('tax'),
-				'remark'		=> $this->input->post('remark'),
+				'deskripsi'		=> $this->input->post('deskripsi'),
 			];
 
 			$this->db->insert('items',$data);
@@ -65,11 +64,9 @@ class Item extends CI_Controller {
 
 			$data = [
 				'nama'			=> $this->input->post('nama'),
-				'unit'			=> $this->input->post('unit'),
 				'harga_beli'	=> (int)$h_b,
 				'harga_jual'	=> (int)$h_j,
-				'tax'			=> $this->input->post('tax'),
-				'remark'		=> $this->input->post('remark'),
+				'deskripsi'		=> $this->input->post('deskripsi'),
 			];
 
 			$this->db->update('items',$data,['kditem' => $kditem]);

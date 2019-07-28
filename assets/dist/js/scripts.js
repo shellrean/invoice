@@ -28,6 +28,7 @@ $('a.toggle-modal').bind('click',function(e) {
  */ 
 $(document).ready(function() {
   	$('.uang').mask("#.##0", {reverse: true});
+    $('.phone').mask('0000-0000-0000');
 	$('.select2').select2({ width: 'element' });
 
 

@@ -58,7 +58,7 @@
                                         <tr>
                                             <td width="25%">Telp</td>
                                             <td>
-                                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="" />
+                                                <input type="text" class="form-control phone" name="phone" id="phone" placeholder="Phone" value="" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,13 +137,13 @@
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="bill_addr_phone" id="bill_addr_phone" placeholder="Billing Address Phone" value="" />
+                                                    <input type="text" class="form-control phone" name="bill_addr_phone" id="bill_addr_phone" placeholder="Billing Address Phone" value="" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Fax</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="bill_addr_fax" id="bill_addr_fax" placeholder="Billing Address Fax" value="" />
+                                                    <input type="text" class="form-control phone" name="bill_addr_fax" id="bill_addr_fax" placeholder="Billing Address Fax" value="" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -187,13 +187,13 @@
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ship_addr_phone" id="ship_addr_phone" placeholder="Shipping Address Phone" value="" />
+                                                    <input type="text" class="form-control phone" name="ship_addr_phone" id="ship_addr_phone" placeholder="Shipping Address Phone" value="" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Fax</td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="ship_addr_fax" id="ship_addr_fax" placeholder="Shipping Address Fax" value="" />
+                                                    <input type="text" class="form-control phone" name="ship_addr_fax" id="ship_addr_fax" placeholder="Shipping Address Fax" value="" />
                                                 </td>
                                             </tr>
                                         </table>
