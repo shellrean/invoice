@@ -1,15 +1,13 @@
-        <!-- Main content -->
+      <div class="content">
         <section class="invoice">
-          <!-- title row -->
           <div class="row">
             <div class="col-xs-12">
               <h2 class="page-header">
-                <i class="fa fa-globe"></i> Jasa-it.net
+                INVOICE - DETAIL
                 <small class="pull-right">Date: <?php echo date('d/m/Y') ?></small>
               </h2>
-            </div><!-- /.col -->
+            </div>
           </div>
-          <!-- info row -->
           <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
               From
@@ -20,28 +18,30 @@
                 Jakarta Barat, 11180 - Indonesia<br/>
                 T: 021-26071151 ; F: 021-26071151
               </address>
-            </div><!-- /.col -->
+            </div>
             <div class="col-sm-4 invoice-col">
               To
               <address>
-                <strong><?php $dat = getData('customer','id',$invoice->id_customer,'display_name'); echo $dat->display_name ?></strong><br>
-                795 Folsom Ave, Suite 600<br>
-                San Francisco, CA 94107<br>
-                Phone: (555) 539-1037<br/>
-                Email: john.doe@example.com
+                <?php 
+                  $dat = getData('customer','id',$invoice->id_customer,'display_name,company_name,phone,email');
+                  $dat2 = getData('customer_details','id_customer',$invoice->id_customer,'bill_addr_street,bill_addr_state,bill_addr_city,bill_addr_zip_code');
+                ?>
+                <strong><?=$dat->display_name ?></strong><br>
+                <?= $dat->company_name ?><br>
+                <?= $dat2->bill_addr_street.' '.$dat2->bill_addr_state.' <br>'.$dat2->bill_addr_city.' ,'.$dat2->bill_addr_zip_code ?> <br>
+                Phone: <?= $dat->phone ?><br/>
+                Email: <?= $dat->email ?>
               </address>
-            </div><!-- /.col -->
+            </div>
             <div class="col-sm-4 invoice-col">
-              <b>invoice #<?= $invoice->kdinv; ?></b><br/>
+              <b>invoice</b> #<?= $invoice->kdinv; ?><br/>
               <b>Quotation:</b> <?= $invoice->kdquo ?> <br>
-              <b>PO / Ref:</b> PO3728/11/2015<br/>
+              <b>PO / Ref:</b> <?= $invoice->ordernumber ?><br/>
               <b>Order Date:</b> <?= $invoice->invdate; ?><br/>
-              <b>TOP:</b> CASH<br/>
-              <b>Jobs:</b> Trading
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+              <b>Due Date:</b> <?= $invoice->duedate ?>
+            </div>
+          </div>
 
-          <!-- Table row -->
           <div class="row">
             <div class="col-xs-12 table-responsive">
               <table class="table table-striped">
@@ -63,8 +63,8 @@
                   ?>
                     <tr>
                       <td><?= ++$start ?></td>
-                      <td><?= $detail->itemkd ?></td>
                       <td><?= $detail->itemname ?></td>
+                      <td><?= $detail->itemdesc ?></td>
                       <td><?= $detail->qty ?></td>
                       <td><?= $detail->priceperitem ?></td>
                       <td><?= $detail->totalprice ?></td>
@@ -74,11 +74,10 @@
                   ?>
                 </tbody>
               </table>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            </div>
+          </div>
 
           <div class="row">
-            <!-- accepted payments column -->
             <div class="col-xs-6">
               <p class="lead">Payment Methods:</p>
               <img src="<?= base_url()?>assets/dist/img/credit/visa.png" alt="Visa"/>
@@ -97,10 +96,9 @@
                 3. Include PPN 10%<br>
                 4. Price change without prior notice<br>
               </p>
-            </div><!-- /.col -->
+            </div>
             <div class="col-xs-6">
-              <p class="lead">Amount Due : <strong><?php echo date('d F Y') ?></strong></p>
-              <div class="table-responsive">
+              <div class="table-responsive" style="margin-top:80px;">
                 <table class="table">
                   <tr>
                     <th style="width:50%">Subtotal:</th>
@@ -113,10 +111,7 @@
                   <tr>
                     <th>PPN:</th>
                     <td>
-                        <?php 
-                        //$pajak = ($tax/100)*$subtotal;
-                        //echo $pajak;
-                        echo rupiah($invoice->tax);?>
+                        <?= rupiah($invoice->tax);?>
                     </td>
                   </tr>
                   <tr>
@@ -127,25 +122,16 @@
                   </tr>
                 </table>
               </div>
-              <br>
-              <center>
-                <p>
-                  Jakarta, <?php echo date('d F Y'); ?>
-                </p>
-                <br><br><br><br>
-                <p>
-                  <strong>(Yusman )</strong>
-                </p>
-              </center>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            </div>
+          </div>
 
-          <!-- this row will not appear when printing -->
+          
           <div class="row no-print">
             <div class="col-xs-12">
               <a href="<?php echo site_url('invoice') ?>" class="btn btn-default">Kembali</a>
               <a href="<?php echo site_url('invoice/record_payment/'.$invoice->kdquo) ?>" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Record Payment</a>
             </div>
           </div>
-        </section><!-- /.content -->
+        </section>
         <div class="clearfix"></div>
+      </div>

@@ -3,7 +3,7 @@
           <div class="row">
             <div class="col-xs-12">
               <h2 class="page-header">
-                Quotation - detail
+                QUOTATION - DETAIL
                 <small class="pull-right">Date: <?php echo date('d/m/Y') ?></small>
               </h2>
             </div>
