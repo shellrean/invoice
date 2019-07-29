@@ -151,9 +151,18 @@ class Quotation extends CI_Controller {
 		$details = $this->db->get_where('quotation_details',array('kdquo' => $id))->result();
 		$data['quotation'] = $quotation;
 		$data['details'] = $details;
-		$m_pdf = new \Mpdf\Mpdf();
+		$mpdfConfig = array(
+				'format' => 'A4',
+				'orientation' => 'P'  	
+			);
+		$m_pdf = new \Mpdf\Mpdf($mpdfConfig);
+		$m_pdf->SetMargins(0, 0, 4);
+		$m_pdf->showImageErrors = true;
+
  		$pdfFilePath = strtolower(str_replace(' ','_','quotation '.$quotation->kdquo)).".pdf";
 
-		$this->load->view('quotation/cetak_detail',$data);
+		$html = $this->load->view('quotation/test3',$data,TRUE);
+		$m_pdf->WriteHTML($html);
+		$m_pdf->Output($pdfFilePath, 'I');
 	}
-}
+} 

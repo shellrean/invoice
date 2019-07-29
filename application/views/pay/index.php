@@ -48,13 +48,11 @@
                                           Aksi <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a href="<?= base_url('invoice/detail/'.$p->kdinv) ?>" >Detail</a></li>
-                                          <li><a href="<?= base_url('invoice/record_payment/'.$p->kdinv) ?>">Record Payment</a></li>
-                                          <li><a href="<?= base_url('invoice/delivery_notice/'.$p->kdinv) ?>">Delivery Notice</a></li>
+                                          <li><a href="<?= base_url('payment_received/detail/'.$p->kdpayrec) ?>" class="toggle-modal" >Detail</a></li>
                                         </ul>
                                       </div>
                     		    </td>
-            	           </tr>
+            	           </tr> 
                             <?php
                         }
                         ?>

@@ -60,4 +60,25 @@ class Invoice extends CI_Controller {
 
 	}
 
+	public function print($id)
+	{
+		$invoice = $this->db->get_where('invoice',array('kdinv' => $id))->row();
+		$details = $this->db->get_where('invoice_details',array('kdinv' => $id))->result();
+		$data['invoice'] = $invoice;
+		$data['details'] = $details;
+		$mpdfConfig = array(
+				'format' => 'A4',
+				'orientation' => 'P'  	
+			);
+		$m_pdf = new \Mpdf\Mpdf($mpdfConfig);
+		$m_pdf->SetMargins(0, 0, 4);
+		$m_pdf->showImageErrors = true;
+
+ 		$pdfFilePath = strtolower(str_replace(' ','_','invoice '.$invoice->kdquo)).".pdf";
+
+		$html = $this->load->view('invoice/cetak_invoice',$data,TRUE);
+		$m_pdf->WriteHTML($html);
+		$m_pdf->Output($pdfFilePath, 'I');
+	}
+
 }

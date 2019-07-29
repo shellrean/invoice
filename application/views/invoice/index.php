@@ -44,7 +44,6 @@
                                 <ul class="dropdown-menu">
                                   <li><a href="<?= base_url('invoice/detail/'.$i->kdinv) ?>" >Detail</a></li>
                                   <li><a href="<?= base_url('invoice/record_payment/'.$i->kdinv) ?>">Record Payment</a></li>
-                                  <li><a href="<?= base_url('invoice/delivery_notice/'.$i->kdinv) ?>">Delivery Notice</a></li>
                                 </ul>
                               </div>
                           </td>

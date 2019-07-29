@@ -128,6 +128,7 @@
           <div class="row no-print">
             <div class="col-xs-12">
               <a href="<?php echo site_url('invoice') ?>" class="btn btn-default">Kembali</a>
+              <a href="<?= base_url('invoice/print/'.$invoice->kdinv) ?>" class="btn btn-default" target="_blank"><i class="fa fa-print"></i> Print</a>
               <a href="<?php echo site_url('invoice/record_payment/'.$invoice->kdinv) ?>" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Record Payment</a>
             </div>
           </div>
