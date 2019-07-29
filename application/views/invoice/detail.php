@@ -66,8 +66,8 @@
                       <td><?= $detail->itemname ?></td>
                       <td><?= $detail->itemdesc ?></td>
                       <td><?= $detail->qty ?></td>
-                      <td><?= $detail->priceperitem ?></td>
-                      <td><?= $detail->totalprice ?></td>
+                      <td><?= rupiah($detail->priceperitem) ?></td>
+                      <td><?= rupiah($detail->totalprice) ?></td>
                     </tr>
                   <?php
                     }
@@ -129,7 +129,7 @@
           <div class="row no-print">
             <div class="col-xs-12">
               <a href="<?php echo site_url('invoice') ?>" class="btn btn-default">Kembali</a>
-              <a href="<?php echo site_url('invoice/record_payment/'.$invoice->kdquo) ?>" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Record Payment</a>
+              <a href="<?php echo site_url('invoice/record_payment/'.$invoice->kdinv) ?>" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Record Payment</a>
             </div>
           </div>
         </section>

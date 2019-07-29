@@ -129,6 +129,9 @@ $('#datepicker1').datepicker({
                 updateTotals(this);
                 calculateTotal();
             });
+            $('#bankcharge').on('input','.calculate',function() {
+                updateDue(this);
+            })
 
             $('#invoice_totals').on('input', '.calculate', function () {
                 calculateTotal();
@@ -142,6 +145,12 @@ $('#datepicker1').datepicker({
                 calculateTotal();
             });
 
+            function updateDue(elem) {
+                charge = $('[name="bankcharge"]').val();
+                amount = $('[name="invamount"]').val();
+
+                $('[name="dueamount"]').val(parseInt(charge)+parseInt(amount));
+            }
             //update total
             function updateTotals(elem) {
 

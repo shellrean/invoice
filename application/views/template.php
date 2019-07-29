@@ -150,7 +150,7 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="<?php echo base_url().'/index.php/main' ?>">
+                            <a href="<?php echo base_url() ?>panel">
                                 <i class="fa fa-laptop"></i> <span>DASHBOARD</span>
                                 <small class="label pull-right bg-red"></small>
                             </a>

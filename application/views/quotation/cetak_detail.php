@@ -82,7 +82,7 @@
     <div class="row">
       <div class="col-xs-12 table-responsive">
         <table class="table table-bordered">
-          <thead>
+          <thead style="background: #000;">
             <tr>
               <th>No</th>
               <th>Product & Type</th>

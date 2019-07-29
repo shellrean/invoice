@@ -37,22 +37,19 @@ class Invoice extends CI_Controller {
 			$date = explode("-", $this->input->post('paydate'));
         	$paydate = $date[2]."-".$date[1]."-".$date[0];
 
-        	$genkdPayRec = generateKodeItem('kdpayrec','payment_received');
+        	$this->db->update('invoice',array('status' => 14),array('kdinv' => $id));
+
+        	$genkdPayRec = generateKodeItem('kdpayrec','payment_received','PYM');
         	$data = [
         		'kdpayrec' 	=> $genkdPayRec,
-                'ctpay' 	=> $this->input->post('ctpay'),
                 'id_customer'=> $this->input->post('id_customer'),
                 'bankcharge'=> $this->input->post('bankcharge'),
                 'paydate' 	=> $paydate,
-                'paymode' 	=> $this->input->post('paymode'),
-                'reference' => $this->input->post('reference'),
                 'kdinv' 	=> $this->input->post('kdinv'),
                 'invdate' 	=> $this->input->post('invdate'),
                 'invamount' => $this->input->post('invamount'),
                 'dueamount' => $this->input->post('dueamount'),
                 'amount' 	=> $this->input->post('amount'),
-                'remark' 	=> $this->input->post('remark'),
-                'upload' 	=> $this->input->post('upload'),
         	];
 
         	$this->db->insert('payment_received',$data);
