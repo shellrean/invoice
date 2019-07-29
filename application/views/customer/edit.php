@@ -85,11 +85,11 @@
                                         <tr><td>Pembayaran</td>
                                             <td>
                                                 <select name="payment_terms" id="payment_terms" class="js-example-basic-single js-states form-control select2">
-                                                    <option value="0-DOR" <?= ($customer->currency == '0-DOR' ? 'selected' : '' )?>>Due on Receipt</option>
-                                                    <option value="1-N15" <?= ($customer->currency == '1-N15' ? 'selected' : '' )?>>Net 15</option>
-                                                    <option value="2-N30" <?= ($customer->currency == '2-N30' ? 'selected' : '' )?>>Net 30</option>
-                                                    <option value="3-N45" <?= ($customer->currency == '3-N45' ? 'selected' : '' )?>>Net 45</option>
-                                                    <option value="4-N60" <?= ($customer->currency == '4-N60' ? 'selected' : '' )?>>Net 60</option>
+                                                    <option value="0-DOR" <?= ($customer->payment_terms == '0-DOR' ? 'selected' : '' )?>>Due on Receipt</option>
+                                                    <option value="1-N15" <?= ($customer->payment_terms == '1-N15' ? 'selected' : '' )?>>Net 15</option>
+                                                    <option value="2-N30" <?= ($customer->payment_terms == '2-N30' ? 'selected' : '' )?>>Net 30</option>
+                                                    <option value="3-N45" <?= ($customer->payment_terms == '3-N45' ? 'selected' : '' )?>>Net 45</option>
+                                                    <option value="4-N60" <?= ($customer->payment_terms<p></p> == '4-N60' ? 'selected' : '' )?>>Net 60</option>
                                                 </select>
                                             </td>
                                         </tr>

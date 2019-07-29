@@ -11,6 +11,9 @@
 		body {
 			font-size: 11px;
 		}
+    .trip tr:nth-child(even) {
+      background-color: #fcf8e3
+    }
 	</style>
 </head>
 <body>
@@ -43,10 +46,9 @@
         From
         <address>
           <strong>CV. Bisma Cipta Solusi</strong><br>
-          Lindeteves Trade Center (LTC Glodok)<br>
-          Jl. Hayam Wuruk no. 127<br>
-          Jakarta Barat, 11180 - Indonesia<br/>
-          T: 021-26071151 ; F: 021-26071151
+            Jl. Kebayoran Lama no. 156, Sukabumi Selatan<br>
+            Kebon Jeruk, Jakarta Barat, 11560 - Indonesia<br/>
+            T: 021-53665992 ; F: 021-53665992
         </address>
       </div>
       <div class="col-sm-4 invoice-col">
@@ -81,8 +83,8 @@
     </div>
     <div class="row">
       <div class="col-xs-12 table-responsive">
-        <table class="table table-bordered">
-          <thead style="background: #000;">
+        <table class="table table-bordered trip">
+          <thead style="background: #fff83b;">
             <tr>
               <th>No</th>
               <th>Product & Type</th>

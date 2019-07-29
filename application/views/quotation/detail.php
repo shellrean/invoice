@@ -13,10 +13,9 @@
               From
               <address>
                 <strong>CV. Bisma Cipta Solusi</strong><br>
-                Lindeteves Trade Center (LTC Glodok)<br>
-                Jl. Hayam Wuruk no. 127<br>
-                Jakarta Barat, 11180 - Indonesia<br/>
-                T: 021-26071151 ; F: 021-26071151
+                Jl. Kebayoran Lama no. 156, Sukabumi Selatan<br>
+                Kebon Jeruk, Jakarta Barat, 11560 - Indonesia<br/>
+                T: 021-53665992 ; F: 021-53665992
               </address>
             </div>
             <div class="col-sm-4 invoice-col">

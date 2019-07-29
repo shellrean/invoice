@@ -3,9 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /* 
 | -------------------------------------------------------------------
-| Herlper crapor
+| Herlper Voice Bisma application
 | -------------------------------------------------------------------
-| @package   crapor
+| @package   Voic Helper
 | @author    Kuswandi <wandinak17@gmail.com>
 | @copyright Copyright (c) 2018 - 2019
 | @since     1.0
@@ -139,7 +139,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
   /**
    * Helper untuk mengambil data dari selector
-   * @return object
+   * @return string
    * @author Kuswandi <wandinak17@gmail.com>
    */
   function getStatus($id){
@@ -152,7 +152,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
   /**
    * Helper untuk mengambil data dari selector
-   * @return object
+   * @return string
    * @author Kuswandi <wandinak17@gmail.com>
    */
   function toDateInd($date){
@@ -167,6 +167,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
     return $res;
   }
 
+  /**
+   * Helper untuk membuat nomor order berurutan dengan prefix
+   * @return string
+   * @author Kuswandi <wandinak17@gmail.com>
+   */
   function orderNumberGenerate(){
     $CI =&get_instance();
 
@@ -176,28 +181,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     $CI->db->insert('order_tabel',array('dd' => 'oke'));
     return $order_num;
-  }
-
-  function cekStatus($id) {
-    if($id == 12) {
-      $ret = '<div class="progress">
-              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 35%;">
-                Unpaid
-              </div>
-            </div>';
-    }elseif($id == 14) {
-      $ret = '<div class="progress">
-  <div class="progress-bar" role="progressbar " aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    Paid
-  </div>
-</div>';
-    } elseif($id == 15) {
-      $ret = '<div class="progress">
-  <div class="progress-bar" role="progressbar progress-bar-success" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    Void
-  </div>
-</div>';
-    }
-
-    return $ret;
   }
