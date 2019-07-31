@@ -16,12 +16,12 @@ class Quotation extends CI_Controller {
 	public function index()
 	{
 		$this->db->order_by('id','DESC');
-		$data['satuses'] = statuses();
+		$data['satuses'] = statusesQuote();
 		$data['quotations'] = $this->db->get('quotation')->result();
 		$this->template->load('template','quotation/index',$data);
 	}
 
-	public function create()
+	public function create() 
 	{
 		if($this->form_validation->run('quotation/create') == FALSE) {
 
@@ -113,7 +113,7 @@ class Quotation extends CI_Controller {
 			$i=0;
             foreach ($counts as $c):
             	$dt = explode('-', $this->input->post('invoice_product')[$i]);
-                $datadetail[$i] = array(
+                $datadetail = array(
                         'itemname' 		=> $dt[0],
                         'itemdesc'		=> $dt[1],
                         'qty' 			=> $this->input->post('invoice_product_qty')[$i],
@@ -122,7 +122,7 @@ class Quotation extends CI_Controller {
                         'totalprice' 	=> $this->input->post('invoice_product_sub')[$i],
                 );
 
-                $this->db->update('quotation_details',$datadetail[$i],array('kdquo' => $id));
+                $this->db->update('quotation_details',$datadetail,array('id' => $id));
 
             $i++;
             endforeach;
@@ -151,8 +151,6 @@ class Quotation extends CI_Controller {
 			$this->template->load('template','quotation/convert_invoice',$data);
 
 		} else {
-
-			$this->db->update('quotation',array('status' => 7),array('kdquo' => $id));
 			
 			$date = explode("-", $this->input->post('invdate'));
 	        $invdate = $date[2]."-".$date[1]."-".$date[0];
@@ -173,9 +171,10 @@ class Quotation extends CI_Controller {
                 'discount' 		=> $this->input->post('invoice_shipping'),
                 'tax' 			=> $this->input->post('invoice_vat'),
                 'grdtotal' 		=> $this->input->post('grdtotal'),
+                'balance'		=> $this->input->post('grdtotal'),
                 'payopt' 		=> $this->input->post('payopt'),
                 'custnotes' 	=> $this->input->post('custnotes'),
-                'status'		=> 12,
+                'status'		=> 1
 			];
 			$this->db->insert('invoice',$data);
 
@@ -220,8 +219,15 @@ class Quotation extends CI_Controller {
 
  		$pdfFilePath = strtolower(str_replace(' ','_','quotation '.$quotation->kdquo)).".pdf";
 
-		$html = $this->load->view('quotation/test3',$data,TRUE);
+		$html = $this->load->view('quotation/Quotation_cetak',$data,TRUE);
 		$m_pdf->WriteHTML($html);
 		$m_pdf->Output($pdfFilePath, 'I');
+	}
+
+	public function modal_create_quote()
+	{
+		$this->template->set('modal_title','Buat penawaran');
+		$this->template->set('modal_s','modal-lg');
+		$this->template->load('modal','quotation/modal_create'); 
 	}
 } 

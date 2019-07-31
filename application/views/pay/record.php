@@ -14,12 +14,16 @@
                                         <tr>
                                             <td width="10%">Faktur</td>
                                             <td>
-                                                <?php
-                                                $client = $this->db->get_where('customer',array('id' => $invoice->id_customer))->row();
+                                                <select name="invoice_id" id="invoice_id" class="form-control select2">
+                                                <?php foreach ($open_invoices as $invoice) { 
+                                                    $client = $this->db->get_where('customer',array('id' => $invoice->id_customer))->row();
                                                     ?>
                                                     
-                                                <input type="hidden" name="invoice_id" value="<?= $invoice->id ?>">
-                                                <input type="text" name="" value="<?= $invoice->kdinv . ' - ' . $client->display_name . ' - ' . rupiah($invoice->balance); ?>" readonly>
+                                                    <option value="<?= $invoice->id; ?>" >
+                                                        <?php echo $invoice->kdinv . ' - ' . $client->display_name . ' - ' . rupiah($invoice->balance); ?>
+                                                    </option>
+                                                <?php } ?>
+                                                </select>
                                             </td>
                                         </tr>
                                         <tr>

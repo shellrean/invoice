@@ -23,10 +23,22 @@
                                             <?php echo cmb_dinamis('id_customer','customer','display_name','id','display_name'); ?>
                                         </td></tr>
                                         <tr><td>Tanggal</td>
-                                            <td><input type="text" class="form-control" name="quodate" id="datepicker" data-format="dd-mm-yyyy" placeholder="Tanggal" value="" />
+                                            <td>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="quodate" id="datepicker" data-format="dd-mm-yyyy" placeholder="Tanggal" value="<?= date('d-m-Y') ?>" required/>
+                                                <span class="input-group-addon">
+                                            <i class="fa fa-calendar fa-fw"></i>
+                                        </span>
+                                            </div>
                                         </td></tr>
                                         <tr><td>Kadaluarsa</td>
-                                            <td><input type="text" class="form-control" name="expdate" id="datepicker1" data-format="dd-mm-yyyy" placeholder="Kadaluarsa" value="" />
+                                            <td>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="expdate" id="datepicker1" data-format="dd-mm-yyyy" placeholder="Kadaluarsa" value="" required />
+                                                <span class="input-group-addon">
+                                            <i class="fa fa-calendar fa-fw"></i>
+                                        </span>
+                                            </div>
                                         </td></tr>
                                         <tr>
                                             <td>Status</td>
@@ -44,65 +56,54 @@
                                     </table>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 nopadding">
+                                    <h4><a href="#" class="btn btn-success btn-xs add-row"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah</a></h4>
                                     <table class="table table-bordered" id="invoice_table">
-                                        <thead>
-                                            <tr>
-                                                <th><h4><a href="#" class="btn btn-success btn-xs add-row"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></h4></th>
-                                                <th width="400">
-                                                    <h4>Item</h4>
-                                                </th>
-                                                <th>
-                                                    <h4>Kuantitas</h4>
-                                                </th>
-                                                <th>
-                                                    <h4>Harga</h4>
-                                                </th>
-                                                <th width="250">
-                                                    <h4>Diskon</h4>
-                                                </th>
-                                                <th>
-                                                    <h4>Subtotal</h4>
-                                                </th>
-                                            </tr>
-                                        </thead>
                                         <tbody>
                                             <tr>
+                                                <td valign="middle">
+                                                    <div class="input-group form-group-sm  no-margin-bottom">
+                                                        <a href="#" class="btn btn-danger btn-sm delete-row"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                                    </div>
+                                                </td>
                                                 <td>
-                                                    <div class="form-group form-group-sm  no-margin-bottom">
-                                                        <a href="#" class="btn btn-danger btn-xs delete-row"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                                    <div class="input-group input-group-sm">
+                                                        <span class="input-group-addon">Item</span>
+                                                        <input type="text" class="form-control invoice_product" name="invoice_product[]" placeholder="Enter item title-description">
+                                                        <span class="input-group-addon">
+                                                        <span class="item-select">
+                                                            <a href="#"><i class="fa fa-database item-select"></i> Pilih produk</a>
+                                                        </span>
+                                                            </span>
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
-                                                    <div class="form-group form-group-sm  no-margin-bottom">
-                                                        <input type="text" class="form-control form-group-sm item-input invoice_product" name="invoice_product[]" placeholder="Enter item title-description">
-                                                        <p class="item-select">or <a href="#">select an item</a></p>
-                                                    </div>
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="form-group form-group-sm no-margin-bottom">
+                                                <td>
+                                                    <div class="input-group form-group-sm no-margin-bottom">
+                                                        <span class="input-group-addon">Qty</span>
                                                         <input type="text" class="form-control invoice_product_qty calculate" name="invoice_product_qty[]" value="1">
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
+                                                <td>
                                                     <div class="input-group input-group-sm  no-margin-bottom">
-                                                        <span class="input-group-addon"><?php echo 'Rp' ?></span>
+                                                        <span class="input-group-addon">Harga</span>
                                                         <input type="text" class="form-control calculate invoice_product_price required" name="invoice_product_price[]" aria-describedby="sizing-addon1" placeholder="0.00">
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
-                                                    <div class="form-group form-group-sm  no-margin-bottom">
+                                                <td>
+                                                    <div class="input-group form-group-sm  no-margin-bottom">
+                                                        <span class="input-group-addon">Diskon</span>
                                                         <input type="text" class="form-control calculate" name="invoice_product_discount[]" placeholder="Enter % or value (ex: 10% or 10.50)">
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
+                                                <td>
                                                     <div class="input-group input-group-sm">
-                                                        <span class="input-group-addon"><?php echo 'Rp' ?></span>
+                                                        <span class="input-group-addon">Subtotal</span>
                                                         <input type="text" class="form-control calculate-sub" name="invoice_product_sub[]" id="invoice_product_sub" value="0.00" aria-describedby="sizing-addon1" readonly>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    
                                     <div id="invoice_totals" class="padding-right row text-right">
                                         <div class="col-xs-6 col-sm-12">
                                         
@@ -126,17 +127,6 @@
                                                     <input type="hidden" name="invoice_discount" id="invoice_discount">
                                                 </div>
                                             </div>
-                                            <!-- <div class="row">
-                                                <div class="col-xs-4 col-xs-offset-5">
-                                                    <strong class="shipping">Shipping:</strong>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                    <div class="input-group input-group-sm">
-                                                        <span class="input-group-addon"><?php echo 'Rp' ?></span>
-                                                        <input type="text" class="form-control calculate shipping" name="invoice_shipping" aria-describedby="sizing-addon1" placeholder="0.00" value="0.00">
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <?php 
                                                 $enable_vat = true;
                                                 $vat_included = false;

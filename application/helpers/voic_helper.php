@@ -191,7 +191,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   /**
      * @return array
      */
-    function statuses()
+    function statusesQuote()
     {
         return array(
             '1' => '<span class="label label-default">Naskah</span>',
@@ -200,5 +200,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
             '4' => '<span class="label label-success">Disetujui</span>',
             '5' => '<span class="label label-danger">Tertolak</span>',
             '6' => '<span class="label label-warning">Dibatalkan</span>',
+        );
+    }
+    function statusesInv()
+    {
+        return array(
+            '1' => '<span class="label label-default">Naskah</span>',
+            '2' => '<span class="label label-primary">Terkirim</span>',
+            '3' => '<span class="label label-info">Terlihat</span>',
+            '4' => '<span class="label label-success">Lunas</span>',
+            '5' => '<span class="label label-warning">Belum lunas</span>',
         );
     }

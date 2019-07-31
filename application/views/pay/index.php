@@ -1,9 +1,10 @@
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
+             <?= $this->session->flashdata('message') ?>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>PAYMENT_RECEIVED LIST </h3>
+                  <h3 class='box-title'>PEMBAYARAN </h3>
                   <div class="box-tools pull-right">
                       <?= anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
                       <?= anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
@@ -13,15 +14,12 @@
                     <table class="table table-bordered table-striped" id="mytable">
                         <thead>
                             <tr>
-                                <th width="30px">No</th>
-                    		    <th>Kd Payment Received</th>
-                                <th>Payment Date</th>
-                                <th>Cust Name</th>
-                    		    <th>Kd Invoice</th>
-                                <th>Bank Charge</th>
-                                <th>Amount</th>
-                                <th>Pay Remain</th>
-            		            <th>Action</th>
+                    		    <th>Tanggal pembayaran</th>
+                                <th>Tanggal faktur</th>
+                                <th>Faktur</th>
+                    		    <th>Nama klien</th>
+                                <th>Jumlah</th>
+            		            <th>Opsi</th>
                             </tr>
                         </thead>
             	       <tbody>
@@ -31,24 +29,22 @@
                         {
                             ?>
                             <tr>
-                    		    <td><?= ++$start ?></td>
-                    		    <td><?= $p->kdpayrec ?></td>
-                                <td><?= $p->paydate ?></td>
-                                <td><?php $dat = getData('customer','id',$p->id_customer,'display_name'); echo $dat->display_name ?></td>
-                                <td><?= $p->kdinv ?></td>
-                                <td><?= rupiah($p->bankcharge) ?></td>
-                                <td><?= rupiah($p->amount) ?></td>
-                                <td><?php 
-                                    $set = $p->dueamount-$p->amount; echo rupiah($set);
-                                ?></td>
+                                <?php $inv = $this->db->get_where('invoice',array('id' => $p->invoice_id))->row(); ?>
+                    		    <td><?= toDateInd($p->payment_date) ?></td>
+                                <td><?= toDateInd($inv->invdate) ?></td>
+                                <td><a href="<?= base_url('invoice/detail/'.$inv->kdinv) ?>"><?= $inv->kdinv ?></a></td>
+
+                                <?php $dat = getData('customer','id',$inv->id_customer,'display_name,id');  ?>
+                                <td><a href="<?= base_url('customer/detail/'.$dat->id) ?>"><?= $dat->display_name ?></a></td>
+                                <td><?= rupiah($p->payment_amount) ?></td>
                         
                     		    <td width="140px">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Aksi <span class="caret"></span>
+                                          <i class="fa fa-cog"></i> Opsi<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a href="<?= base_url('payment_received/detail/'.$p->kdpayrec) ?>" class="toggle-modal" >Detail</a></li>
+                                          <li><a href="<?= base_url('payment_received/detail/'.$p->id) ?>" ><i class="fa fa-trash"></i> Hapus</a></li>
                                         </ul>
                                       </div>
                     		    </td>

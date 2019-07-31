@@ -52,3 +52,11 @@ $config['record_payment'] = [
   'rules'     => 'required'
  ]
 ];
+$config['pay/create'] = [
+ [
+  'field'     => 'paydate',
+  'label'     => 'paydate',
+  'rules'     => 'required'
+ ]
+];
+

@@ -4,7 +4,7 @@
       <?= $this->session->flashdata('message'); ?>
       <div class='box'>
         <div class='box-header'>
-          <h3 class='box-title'>INVOICE LIST</h3>
+          <h3 class='box-title'>TAGIHAN TAGIHAN</h3>
           <div class="box-tools pull-right">
               <?= anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
               <?= anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
@@ -14,36 +14,42 @@
             <table class="table table-bordered table-striped" id="mytable">
                 <thead>
                     <tr>
-                        <th width="20px">No</th>
-                        <th>Kd Inv</th>
-                        <th>Order No</th>
-                		    <th>Inv Date</th>
-                        <th>Cust Name</th>
-                		    <th>Status</th>
-                		    <th>Due Date</th>
-                		    <th>Amount</th>
-                		    <th>Action</th>
+                        <th>Status</th>
+                        <th>No faktur</th>
+                		    <th>Dibuat</th>
+                		    <th>Jatuh tempo</th>
+                		    <th>Nama klien</th>
+                        <th>Jumlah</th>
+                		    <th>Saldo</th>
+                		    <th>Opsi</th>
                     </tr>
                 </thead>
           	    <tbody>
                   <?php $start = 0; foreach ($invoices as $i): ?>
                       <tr>
-                          <td><?= ++$start ?></td>
-                          <td><?= $i->kdinv ?></td>
-                          <td><?= $i->ordernumber ?></td>
-                          <td><?= $i->invdate ?></td>
-                          <td><?php $dat = getData('customer','id',$i->id_customer,'display_name'); echo $dat->display_name ?></td>
-                          <td><?= getStatus($i->status) ?></td>
-                          <td><?= date('d-m-Y') ?></td>
+                          <td><?= statusesInv()[$i->status]; ?></td>
+                          <td><a href=""><?= $i->kdinv ?></a></td>
+                          <td><?= toDateInd($i->invdate) ?></td>
+                          <td><?= toDateInd($i->duedate) ?></td>
+                          <?php $dat = getData('customer','id',$i->id_customer,'display_name,id');  ?>
+                            
+                          <td>
+                            <a href="<?= base_url('customer/detail/'.$dat->id) ?>"><?= $dat->display_name ?></a>
+                          </td>
                           <td><?= rupiah($i->grdtotal) ?></td>
+                          <td><?= rupiah($i->balance) ?></td>
                           <td width="140px">
                               <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Aksi <span class="caret"></span>
+                                 <i class="fa fa-cog"></i> Opsi <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="<?= base_url('invoice/detail/'.$i->kdinv) ?>" >Detail</a></li>
-                                  <li><a href="<?= base_url('invoice/record_payment/'.$i->kdinv) ?>">Record Payment</a></li>
+                                  <li><a href="<?= base_url('invoice/detail/'.$i->kdinv) ?>" ><i class="fa fa-list-alt"></i> Detail</a></li>
+                                  <li><a href="<?= base_url('invoice/print/'.$i->kdinv) ?>" target="_blank"><i class="fa fa-file-pdf-o"></i> Download pdf</a></li>
+                                  <?php if($i->balance >0) { ?>
+                                      <li><a href="<?= base_url('invoice/record_payment/'.$i->kdinv) ?>"><i class="fa fa-credit-card"></i> Input Pembayaran</a></li>
+                                  <?php } ?>
+                                  
                                 </ul>
                               </div>
                           </td>

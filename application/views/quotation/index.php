@@ -7,13 +7,15 @@
           <h3 class='box-title'>QUOTASI </h3>
           <div class="box-tools pull-right">
               <?php echo anchor('quotation/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah quotation"'); ?>
+
               <?php echo anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
+
               <?php echo anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
           </div>
         </div>
         <div class='box-body'>
             <table class="table table-bordered table-striped" id="mytable">
-                <thead>
+                <thead>  
                     <tr>
                         <th>Status</th>
                         <th>Kuotasi</th>
@@ -27,11 +29,14 @@
         	    <tbody>
                 <?php foreach ($quotations as $q): ?>
                 <tr>
-                    <td><?= statuses()[$q->status]; ?></td>
+                    <td><?= statusesQuote()[$q->status]; ?></td>
                     <td><a href="<?= base_url('quotation/detail/'.$q->kdquo) ?>"><?= $q->kdquo ?></a></td>
                     <td><?= toDateInd($q->quodate) ?></td>
                     <td><?= toDateInd($q->expdate) ?></td>
-                    <td><?php $dat = getData('customer','id',$q->id_customer,'display_name'); echo $dat->display_name ?></td>
+                    <?php $dat = getData('customer','id',$q->id_customer,'display_name, id');?>
+                    <td>
+                      <a href="<?= base_url('customer/detail/'.$dat->id) ?>"><?= $dat->display_name ?></a>
+                    </td>
                     <td><?= rupiah($q->grdtotal) ?></td>
                     <td width="140px">
                         <div class="btn-group">

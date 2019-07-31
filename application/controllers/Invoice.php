@@ -11,7 +11,8 @@ class Invoice extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->db->order_by('kdinv','DESC');
+
+		$this->db->order_by('id','DESC');
 		$data['invoices'] = $this->db->get('invoice')->result();
 		$this->template->load('template','invoice/index',$data);
 	}
