@@ -15,12 +15,6 @@ class Quotation extends CI_Controller {
 
 	public function index()
 	{
-		// INSERT INTO foo2 (id,text)
-  //   VALUES(LAST_INSERT_ID(),'text');
-   // $d =  generateKodeItem('id','quotation','QUO');
-		// $this->db->get('quotation')->row();
-		// $d = $this->db->insert_id();
-		// echo json_encode($d);;
 		$this->db->order_by('id','DESC');
 		$data['satuses'] = statuses();
 		$data['quotations'] = $this->db->get('quotation')->result();
@@ -75,6 +69,65 @@ class Quotation extends CI_Controller {
             endforeach;
             $this->db->insert_batch('quotation_details',$datadetail);
             alertsuccess('message','Data quotation berhasil ditambahkan');
+            redirect('quotation');
+
+		}
+	}
+
+	public function edit($id)
+	{
+		if($this->form_validation->run('quotation/create') == FALSE) {
+
+			$data['quo'] = $this->db->get_where('quotation',['kdquo' => $id])->row();
+			$date = explode("-", $data['quo']->quodate);
+	        $data['quodate'] = $date[2]."-".$date[1]."-".$date[0];
+
+	        $date1 = explode("-", $data['quo']->expdate);
+	        $data['expdate'] = $date1[2]."-".$date1[1]."-".$date1[0];
+
+			$this->template->load('template','quotation/edit',$data);
+
+		} else {
+			$date = explode("-", $this->input->post('quodate',TRUE));
+	        $quodate = $date[2]."-".$date[1]."-".$date[0];
+
+	        $date1 = explode("-", $this->input->post('expdate',TRUE));
+	        $expdate = $date1[2]."-".$date1[1]."-".$date1[0];
+
+			$data = [
+                'id_customer'=> $this->input->post('id_customer'),
+                'quodate' 	=> $quodate,
+                'expdate' 	=> $expdate,
+                'subtotal' 	=> $this->input->post('invoice_subtotal'),
+                'discount' 	=> $this->input->post('invoice_discount'),
+                'tax' 		=> $this->input->post('invoice_vat'),
+                'grdtotal' 	=> $this->input->post('invoice_total'),
+                'custnotes' => $this->input->post('custnotes'),
+                'status' 	=> $this->input->post('status'),
+			];
+
+			$this->db->update('quotation',$data,array('kdquo' => $id));
+
+			$counts = $this->input->post('invoice_product');
+
+			$i=0;
+            foreach ($counts as $c):
+            	$dt = explode('-', $this->input->post('invoice_product')[$i]);
+                $datadetail[$i] = array(
+                        'itemname' 		=> $dt[0],
+                        'itemdesc'		=> $dt[1],
+                        'qty' 			=> $this->input->post('invoice_product_qty')[$i],
+                        'priceperitem' 	=> $this->input->post('invoice_product_price')[$i],
+                        'discount' 		=> $this->input->post('invoice_product_discount')[$i],
+                        'totalprice' 	=> $this->input->post('invoice_product_sub')[$i],
+                );
+
+                $this->db->update('quotation_details',$datadetail[$i],array('kdquo' => $id));
+
+            $i++;
+            endforeach;
+            // $this->db->update_batch('quotation_details',$datadetail,'kdquo');
+            alertsuccess('message','Data quotation berhasil diubah');
             redirect('quotation');
 
 		}

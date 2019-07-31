@@ -27,8 +27,8 @@
         	    <tbody>
                 <?php foreach ($quotations as $q): ?>
                 <tr>
-                    <td><?= $statuses[1]; ?></td>
-                    <td><?= $q->kdquo ?></td>
+                    <td><?= statuses()[$q->status]; ?></td>
+                    <td><a href="<?= base_url('quotation/detail/'.$q->kdquo) ?>"><?= $q->kdquo ?></a></td>
                     <td><?= toDateInd($q->quodate) ?></td>
                     <td><?= toDateInd($q->expdate) ?></td>
                     <td><?php $dat = getData('customer','id',$q->id_customer,'display_name'); echo $dat->display_name ?></td>
@@ -39,8 +39,10 @@
                             Aksi <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu">
-                            <li><a href="<?= base_url('quotation/detail/'.$q->kdquo) ?>" >Detail</a></li>
-                            <li><a href="<?= base_url('quotation/edit/'.$q->kdquo) ?>">Edit</a></li>
+                            <li><a href="<?= base_url('quotation/detail/'.$q->kdquo) ?>" ><i class="fa fa-list-alt"></i> Detail</a></li>
+                            <li><a href="<?= base_url('quotation/edit/'.$q->kdquo) ?>"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+                            <li><a href="<?= base_url('quotation/print/'.$q->kdquo) ?>" target="_blank"><i class="fa fa-print"></i> Print</a></li>
+                            <li><a href="<?= base_url('quotation/convert_invoice/'.$q->kdquo) ?>" ><i class="fa fa-credit-card"></i> Konversi invoice</a></li>
                           </ul>
                         </div>
                     </td>

@@ -128,17 +128,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-4 col-xs-offset-5">
-                                            <strong class="shipping">Shipping:</strong>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-addon"><?php echo 'Rp' ?></span>
-                                                <input type="text" class="form-control" name="invoice_shipping" id="invoice_shipping" value="<?= $quotation->shipprice ?>" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-4 col-xs-offset-5">
                                             <strong>TAX:</strong>
                                         </div>
                                         <div class="col-xs-3">
@@ -164,7 +153,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-12">
                             <table class='table table-bordered'>
-                                <tr><td width="12%">Notes <?php echo form_error('custnotes') ?></td>
+                                <tr><td width="23%">Notes <?php echo form_error('custnotes') ?></td>
                                     <td>
                                         <input type="text" class="form-control" name="custnotes" id="custnotes" placeholder="custnotes" value="<?= $quotation->custnotes; ?>" readonly/>
                                     </td>
