@@ -4,7 +4,7 @@
       <?= $this->session->flashdata('message'); ?>
       <div class='box'>
         <div class='box-header'>
-          <h3 class='box-title'>DAFTAR QUOTATION </h3>
+          <h3 class='box-title'>QUOTASI </h3>
           <div class="box-tools pull-right">
               <?php echo anchor('quotation/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah quotation"'); ?>
               <?php echo anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
@@ -15,26 +15,23 @@
             <table class="table table-bordered table-striped" id="mytable">
                 <thead>
                     <tr>
-                        <th width="20px">No</th>
-                        <th>Kode</th>
-                        <th>Quot Date</th>
-                        <th>Exp Date</th>
-                        <th>Cust Name</th>
-                		    <th>Status</th>
-                		    <th>Amount</th>
-                		    <th>Action</th>
+                        <th>Status</th>
+                        <th>Kuotasi</th>
+                        <th>Dibuat</th>
+                        <th>Jatuh Tempo</th>
+                        <th>Nama Klien</th>
+                		    <th>Jumlah</th>
+                		    <th>Opsi</th>
                     </tr>
                 </thead>
         	    <tbody>
-                <?php $start = 0; foreach ($quotations as $q): ?>
+                <?php foreach ($quotations as $q): ?>
                 <tr>
-                    <td><?= ++$start ?></td>
+                    <td><?= $statuses[1]; ?></td>
                     <td><?= $q->kdquo ?></td>
-                    <td><?= $q->quodate ?></td>
-                    <td><?= $q->expdate ?></td>
+                    <td><?= toDateInd($q->quodate) ?></td>
+                    <td><?= toDateInd($q->expdate) ?></td>
                     <td><?php $dat = getData('customer','id',$q->id_customer,'display_name'); echo $dat->display_name ?></td>
-                    <td><?= ($q->status == 0 ? "Estimated" : "Invoiced"); ?>
-                    </td>
                     <td><?= rupiah($q->grdtotal) ?></td>
                     <td width="140px">
                         <div class="btn-group">

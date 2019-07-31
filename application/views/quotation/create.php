@@ -7,27 +7,40 @@
         </style>
 
         <section class='content'>
-          <div class='row'>
+          <div class='row'> 
             <div class='col-sm-12'>
               <div class='box'>
                 <form action="<?= base_url('quotation/create') ?>" method="post">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="box-header">
-                        <h3 class='box-title'>QUOTATION</h3>
+                        <h3 class='box-title'>KUOTASI</h3>
                             <div class="box box-primary">
                                 <div class="col-xs-12 col-sm-8 nopadding">
                                     <table class='table table-bordered'>
-                                        <tr><td width="25%">Customer Name</td>
+                                        <tr><td width="25%">Nama Customer</td>
                                             <td>
                                             <?php echo cmb_dinamis('id_customer','customer','display_name','id','display_name'); ?>
                                         </td></tr>
-                                        <tr><td>Quotation Date</td>
-                                            <td><input type="text" class="form-control" name="quodate" id="datepicker" data-format="dd-mm-yyyy" placeholder="Quodate" value="" />
+                                        <tr><td>Tanggal</td>
+                                            <td><input type="text" class="form-control" name="quodate" id="datepicker" data-format="dd-mm-yyyy" placeholder="Tanggal" value="" />
                                         </td></tr>
-                                        <tr><td>Expired Date</td>
-                                            <td><input type="text" class="form-control" name="expdate" id="datepicker1" data-format="dd-mm-yyyy" placeholder="Expdate" value="" />
+                                        <tr><td>Kadaluarsa</td>
+                                            <td><input type="text" class="form-control" name="expdate" id="datepicker1" data-format="dd-mm-yyyy" placeholder="Kadaluarsa" value="" />
                                         </td></tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>
+                                                <select class="form-control select2" name="status">
+                                                    <option value="1">Naskah</option>
+                                                    <option value="2">Terkirim</option>
+                                                    <option value="3">Terlihat</option>
+                                                    <option value="4">Disetujui</option>
+                                                    <option value="5">Tertolak</option>
+                                                    <option value="6">Dibatalkan</option>
+                                                </select>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 nopadding">
@@ -39,16 +52,16 @@
                                                     <h4>Item</h4>
                                                 </th>
                                                 <th>
-                                                    <h4>Qty</h4>
+                                                    <h4>Kuantitas</h4>
                                                 </th>
                                                 <th>
-                                                    <h4>Price</h4>
+                                                    <h4>Harga</h4>
                                                 </th>
                                                 <th width="250">
-                                                    <h4>Discount</h4>
+                                                    <h4>Diskon</h4>
                                                 </th>
                                                 <th>
-                                                    <h4>Sub Total</h4>
+                                                    <h4>Subtotal</h4>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -97,7 +110,7 @@
                                         <div class="col-xs-6 col-sm-12 no-padding-right">
                                             <div class="row">
                                                 <div class="col-xs-4 col-xs-offset-5">
-                                                    <strong>Sub Total:</strong>
+                                                    <strong>Subtotal:</strong>
                                                 </div>
                                                 <div class="col-xs-3">
                                                     <?php echo 'Rp' ?><span class="invoice-sub-total">0.00</span>
@@ -106,14 +119,14 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-4 col-xs-offset-5">
-                                                    <strong>Discount:</strong>
+                                                    <strong>Diskon:</strong>
                                                 </div>
                                                 <div class="col-xs-3">
                                                     <?php echo 'Rp' ?><span class="invoice-discount">0.00</span>
                                                     <input type="hidden" name="invoice_discount" id="invoice_discount">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-xs-4 col-xs-offset-5">
                                                     <strong class="shipping">Shipping:</strong>
                                                 </div>
@@ -123,7 +136,7 @@
                                                         <input type="text" class="form-control calculate shipping" name="invoice_shipping" aria-describedby="sizing-addon1" placeholder="0.00" value="0.00">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <?php 
                                                 $enable_vat = true;
                                                 $vat_included = false;
@@ -131,7 +144,7 @@
                                             ?>
                                             <div class="row">
                                                 <div class="col-xs-4 col-xs-offset-5">
-                                                    <strong>TAX/VAT:</strong><br>Remove TAX/VAT <input type="checkbox" class="remove_vat">
+                                                    <strong>Pajak:</strong><br>Hapus Pajak <input type="checkbox" class="remove_vat">
                                                 </div>
                                                 <div class="col-xs-3">
                                                     <?php echo 'Rp' ?><span class="invoice-vat" data-enable-vat="<?php echo $enable_vat ?>" data-vat-rate="<?php echo '10' ?>" data-vat-method="<?php echo $vat_included ?>">0.00</span>
@@ -153,13 +166,13 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-8 nopadding">
                                     <table class='table table-bordered'>
-                                        <tr><td width="25%">Notes</td>
+                                        <tr><td width="25%">Catatan</td>
                                             <td>
-                                            <textarea class="form-control" rows="3" name="custnotes" id="custnotes" placeholder="Customer Notes" value=""></textarea>
+                                            <textarea class="form-control" rows="3" name="custnotes" id="custnotes" value=""></textarea>
                                         </td></tr>
                                         <tr>
                                             <td>
-                                                <button type="submit" class="btn btn-primary">Save</button> 
+                                                <button type="submit" class="btn btn-primary">Simpan</button> 
                                                 <a href="<?= site_url('quotation') ?>" class="btn btn-default">Cancel</a>
                                             
                                             </td>

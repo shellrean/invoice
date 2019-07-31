@@ -82,17 +82,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
    */
   function generateKodeItem($id,$tabel,$prefix = null)
   {
-    $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $res = "";
-    for ($i = 0; $i < 10; $i++) {
-        $res .= $chars[mt_rand(0, strlen($chars)-1)];
-    }
-    $qid = strtoupper(uniqid());
-    $kode = trim(preg_replace('/\s+/', ' ', $prefix.$res.$qid));
-
-    return $kode;
+    $ci = get_instance();
+    // $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // $res = "";
+    // for ($i = 0; $i < 10; $i++) {
+    //     $res .= $chars[mt_rand(0, strlen($chars)-1)];
+    // }
+    // $qid = strtoupper(uniqid());
+    // $kode = trim(preg_replace('/\s+/', ' ', $prefix.$res.$qid));
+    $ci->db->order_by($id,'DESC');
+    $d = $ci->db->get($tabel)->row();
+    
+    $order_num = sprintf($prefix."%05d", $d->id+1);
+    return $order_num;
   }
-
+ 
   /**
    * Helper untuk format rupiah
    * @return string
@@ -182,3 +186,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
     $CI->db->insert('order_tabel',array('dd' => 'oke'));
     return $order_num;
   }
+
+
+  /**
+     * @return array
+     */
+    public function statuses()
+    {
+        return array(
+            '1' => 'oke',
+            ),
+            '2' => 'oke2',
+        );
+    }

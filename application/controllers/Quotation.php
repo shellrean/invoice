@@ -15,7 +15,14 @@ class Quotation extends CI_Controller {
 
 	public function index()
 	{
-		$this->db->order_by('kdquo','DESC');
+		// INSERT INTO foo2 (id,text)
+  //   VALUES(LAST_INSERT_ID(),'text');
+   // $d =  generateKodeItem('id','quotation','QUO');
+		// $this->db->get('quotation')->row();
+		// $d = $this->db->insert_id();
+		// echo json_encode($d);;
+		$this->db->order_by('id','DESC');
+		$data['satuses'] = statuses();
 		$data['quotations'] = $this->db->get('quotation')->result();
 		$this->template->load('template','quotation/index',$data);
 	}
@@ -35,17 +42,16 @@ class Quotation extends CI_Controller {
 
 	        $kd = generateKodeItem('kdquo','quotation','QUO');
 			$data = [
-				'kdquo' 	=> $kd,
+				'kdquo' 	=> $kd, 
                 'id_customer'=> $this->input->post('id_customer'),
                 'quodate' 	=> $quodate,
                 'expdate' 	=> $expdate,
                 'subtotal' 	=> $this->input->post('invoice_subtotal'),
                 'discount' 	=> $this->input->post('invoice_discount'),
-                'shipprice' => $this->input->post('invoice_shipping'),
                 'tax' 		=> $this->input->post('invoice_vat'),
                 'grdtotal' 	=> $this->input->post('invoice_total'),
                 'custnotes' => $this->input->post('custnotes'),
-                'status' 	=> 0,
+                'status' 	=> $this->input->post('status'),
 			];
 
 			$this->db->insert('quotation',$data);
