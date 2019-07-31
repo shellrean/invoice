@@ -1,0 +1,22 @@
+{
+  "name": "cvbisma",
+  "version": "1.0.0",
+  "description": "CVbisma is an application for managing your invoice\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shellrean/nvoice.git"
+  },
+  "keywords": [
+    "nvoice"
+  ],
+  "author": "kuswandi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shellrean/nvoice/issues"
+  },
+  "homepage": "https://github.com/shellrean/nvoice#readme"
+}

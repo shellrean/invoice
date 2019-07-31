@@ -36,7 +36,7 @@
                     <td width="140px">
                         <div class="btn-group">
                           <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Aksi <span class="caret"></span>
+                          <i class="fa fa-cog"></i>  Opsi <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu">
                             <li><a href="<?= base_url('quotation/detail/'.$q->kdquo) ?>" ><i class="fa fa-list-alt"></i> Detail</a></li>
