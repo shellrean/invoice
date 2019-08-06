@@ -9,6 +9,7 @@ class Absensi extends CI_Controller {
         $this->db->where(array('deleted'=>'N'));
 		$data['divisi'] = $this->db->get("divisi");
 
-		$this->template->load('template','absensi/upload');
+		$this->template->load('template','absensi/index');
 	}
+
 }

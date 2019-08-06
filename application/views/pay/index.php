@@ -5,9 +5,12 @@
               <div class='box'>
                 <div class='box-header'>
                   <h3 class='box-title'>PEMBAYARAN </h3>
+                  
+
                   <div class="box-tools pull-right">
-                      <?= anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
-                      <?= anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
+                    <?php echo anchor('payment_received/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah record"'); ?>
+                      <?php anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
+                      <?php anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
                   </div>
                 </div>
                 <div class='box-body'>
