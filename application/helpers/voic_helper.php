@@ -212,3 +212,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
             '5' => '<span class="label label-warning">Belum lunas</span>',
         );
     }
+
+    /**
+ * @param $date
+ * @return string
+ */
+function date_to_mysql($date)
+{
+    $CI = &get_instance();
+
+    // $date = DateTime::createFromFormat('m/d/Y', $date);
+    // return $date->format('Y-m-d');
+
+    $date =  date_create_from_format('m/d/Y',$date);
+    return $date->format('Y-m-d');
+}
+
+function _htmlsc($output)
+{
+    echo htmlspecialchars($output, ENT_QUOTES);
+}
+
+/**
+ * @param object $client
+ * @return string
+ */
+function format_client($client)
+{
+    if ($client->client_surname != "") {
+        return $client->client_name . " " . $client->client_surname;
+    }
+
+    return $client->client_name;
+}

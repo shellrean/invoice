@@ -83,6 +83,16 @@ $('#datepicker1').datepicker({
     format: 'dd-mm-yyyy'
 });
 
+$('#datepicker5').datepicker({
+    format: 'mm/dd/yyyy'
+});
+$('#datepicker6').datepicker({
+    format: 'mm/dd/yyyy'
+});
+
+
+
+
 
 /** table **/
 /** ----------------------------------------------------------------- **/
