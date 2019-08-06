@@ -17,6 +17,61 @@ class Invoice extends CI_Controller {
 		$this->template->load('template','invoice/index',$data);
 	}
 
+
+	public function create() 
+	{
+		if($this->form_validation->run('quotation/create') == FALSE) {
+
+			$this->template->load('template','invoice/create');
+
+		} else {
+			$date = explode("-", $this->input->post('quodate',TRUE));
+	        $quodate = $date[2]."-".$date[1]."-".$date[0];
+
+	        $date1 = explode("-", $this->input->post('expdate',TRUE));
+	        $expdate = $date1[2]."-".$date1[1]."-".$date1[0];
+
+	        $kd = generateKodeItem('kdinv','invoice','INV');
+			$data = [
+				'kdinv' 	=> $kd, 
+                'id_customer'=> $this->input->post('id_customer'),
+                'invdate' 	=> $quodate,
+                'duedate' 	=> $expdate,
+                'subtotal' 	=> $this->input->post('invoice_subtotal'),
+                'discount' 	=> $this->input->post('invoice_discount'),
+                'tax' 		=> $this->input->post('invoice_vat'),
+                'grdtotal' 	=> $this->input->post('invoice_total'),
+                'balance'		=> $this->input->post('invoice_total'),
+                'custnotes' => $this->input->post('custnotes'),
+                'status' 	=> $this->input->post('status'),
+			];
+
+			$this->db->insert('invoice',$data);
+
+			$counts = $this->input->post('invoice_product');
+
+			$i=0;
+            foreach ($counts as $c):
+            	$dt = explode('-', $this->input->post('invoice_product')[$i]);
+                $datadetail[$i] = array(
+                        'kdinv' 		=> $kd,
+                        'itemname' 		=> $dt[0],
+                        'itemdesc'		=> $dt[1],
+                        'qty' 			=> $this->input->post('invoice_product_qty')[$i],
+                        'priceperitem' 	=> $this->input->post('invoice_product_price')[$i],
+                        'discount' 		=> $this->input->post('invoice_product_discount')[$i],
+                        'totalprice' 	=> $this->input->post('invoice_product_sub')[$i],
+                );
+
+            $i++;
+            endforeach;
+            $this->db->insert_batch('invoice_details',$datadetail);
+            alertsuccess('message','Data invoice berhasil ditambahkan');
+            redirect('invoice');
+
+		}
+	}
+
 	public function detail($id)
 	{
 		$data['invoice'] = $this->db->get_where('invoice',array('kdinv' => $id))->row();

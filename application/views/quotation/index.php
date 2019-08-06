@@ -8,16 +8,16 @@
           <div class="box-tools pull-right">
               <?php echo anchor('quotation/create', '<i class="fa fa-plus-square-o"></i> Tambah', 'class="btn btn-box-tool" data-toggle="tooltip" title="Tambah quotation"'); ?>
 
-              <?php echo anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
+              <?php anchor('item/add', '<i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download excel"'); ?>
 
-              <?php echo anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
+              <?php anchor('siswa/upl', '<i class="fa fa-file-word-o"></i> Word', 'class="btn btn-box-tool" data-toggle="tooltip" title="Download word"'); ?>
           </div>
         </div>
         <div class='box-body'>
             <table class="table table-bordered table-striped" id="mytable">
                 <thead>  
                     <tr>
-                        <th>Status</th>
+                        <th>Status</th> 
                         <th>Kuotasi</th>
                         <th>Dibuat</th>
                         <th>Jatuh Tempo</th>

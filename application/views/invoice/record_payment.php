@@ -19,7 +19,7 @@
                                                     ?>
                                                     
                                                 <input type="hidden" name="invoice_id" value="<?= $invoice->id ?>">
-                                                <input type="text" name="" value="<?= $invoice->kdinv . ' - ' . $client->display_name . ' - ' . rupiah($invoice->balance); ?>" readonly>
+                                                <input type="text" name="" value="<?= $invoice->kdinv . ' - ' . $client->display_name . ' - ' . rupiah($invoice->balance); ?>" readonly class="form-control">
                                             </td>
                                         </tr>
                                         <tr>
